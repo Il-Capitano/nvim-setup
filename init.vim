@@ -29,6 +29,7 @@ highlight PreCondit guifg=Grey
 highlight CocSemNamespace guifg=Grey
 highlight CocSemParameter guifg=Grey
 highlight CocSemProperty guifg=LightGrey
+highlight link CocSemTypeParameter CocSemType
 highlight link CocSemEnum CocSemType
 highlight link CocSemConcept CocSemType
 highlight link CocSemMacro Macro
