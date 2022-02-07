@@ -5,7 +5,6 @@ exe 'source '.(stdpath('config').'\rainbow.vim')
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'neoclide/coc.nvim'
-" Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'christoomey/vim-tmux-navigator'
@@ -13,7 +12,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'tomasiser/vim-code-dark'
-" Plug 'frazrepo/vim-rainbow'
 
 call plug#end()
 
@@ -23,15 +21,28 @@ exe 'source '.(stdpath('config').'\lightline.vim')
 
 colorscheme codedark
 
+highlight Keyword guifg=s:yellow
 highlight PreProc guifg=Grey
 highlight Include guifg=Grey
 highlight Define guifg=Grey
 highlight PreCondit guifg=Grey
-highlight CocSem_namespace guifg=Grey
-highlight CocSem_parameter guifg=Grey
-highlight CocSem_property guifg=LightGrey
-highlight link CocSem_class CocSem_type
-highlight link CocSem_enumMember Number
+highlight CocSemNamespace guifg=Grey
+highlight CocSemParameter guifg=Grey
+highlight CocSemProperty guifg=LightGrey
+highlight link CocSemEnum CocSemType
+highlight link CocSemConcept CocSemType
+highlight link CocSemMacro Macro
+highlight link CocSemEnumMember Number
+
+highlight! link Keyword Structure
+highlight! link Statement Keyword
+highlight! link Conditional Keyword
+highlight! link Repeat Keyword
+highlight! link Label Keyword
+highlight! link Operator Keyword
+highlight! link Exception Keyword
+highlight! link Type CocSemType
+highlight! link SpecialChar Special
 
 highlight BzAttribute guifg=Grey
 highlight BzNamespace guifg=Grey

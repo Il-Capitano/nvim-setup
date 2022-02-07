@@ -1,4 +1,5 @@
 {
 	"clangd.semanticHighlighting": true,
-	"diagnostic.refreshOnInsertMode": false
+	"diagnostic.refreshOnInsertMode": false,
+	"semanticTokens.filetypes": [ "*" ]
 }
