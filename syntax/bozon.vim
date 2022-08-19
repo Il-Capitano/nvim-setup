@@ -4,7 +4,7 @@ if exists("b:current_syntax")
 endif
 
 " keywords
-syn keyword bozonKeywords function operator struct import export return type let static_assert in break continue __default__ __delete__
+syn keyword bozonKeywords function operator struct import export return type let extern static_assert in break continue __default__ __delete__
 syn keyword bozonOperatorKeywords const consteval typeof sizeof move as __forward
 syn keyword bozonConditionalKeywords if else switch
 syn keyword bozonRepeatKeywords for while
