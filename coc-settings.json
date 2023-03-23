@@ -1,0 +1,6 @@
+{
+	"suggest.noselect": true,
+	"clangd.semanticHighlighting": true,
+	"diagnostic.refreshOnInsertMode": false,
+	"semanticTokens.filetypes": [ "*" ]
+}
