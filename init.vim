@@ -1,10 +1,9 @@
 let g:polyglot_disabled = ['sensible']
-exe 'source '.(stdpath('config').'\rainbow.vim')
 
 " Specify a directory for plugins
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'christoomey/vim-tmux-navigator'
@@ -29,6 +28,7 @@ highlight PreCondit guifg=Grey
 highlight CocSemNamespace guifg=Grey
 highlight CocSemParameter guifg=Grey
 highlight CocSemProperty guifg=LightGrey
+highlight link CocSemClass CocSemType
 highlight link CocSemTypeParameter CocSemType
 highlight link CocSemEnum CocSemType
 highlight link CocSemConcept CocSemType
@@ -42,7 +42,6 @@ highlight! link Repeat Keyword
 highlight! link Label Keyword
 highlight! link Operator Keyword
 highlight! link Exception Keyword
-highlight! link Type CocSemType
 highlight! link SpecialChar Special
 
 highlight BzAttribute guifg=Grey
@@ -76,5 +75,7 @@ augroup END
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 set laststatus=2
 
-" set shell=pwsh.exe
-" tnoremap <Esc> <C-\><C-n>
+" check highlight group under cursor
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
