@@ -3,7 +3,13 @@ let g:polyglot_disabled = ['sensible']
 " Specify a directory for plugins
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'windwp/nvim-autopairs'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'christoomey/vim-tmux-navigator'
@@ -15,27 +21,31 @@ Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 exe 'source '.(stdpath('config').'\nerdtree.vim')
-exe 'source '.(stdpath('config').'\coc.vim')
 exe 'source '.(stdpath('config').'\lightline.vim')
+lua require('lsp')
+lua require('nvim-cmp')
+lua require('nvim-autopairs').setup {}
 
 colorscheme codedark
+
+highlight! link Type StructDecl
+highlight! link Keyword Boolean
 
 highlight Keyword guifg=s:yellow
 highlight PreProc guifg=Grey
 highlight Include guifg=Grey
 highlight Define guifg=Grey
 highlight PreCondit guifg=Grey
-highlight CocSemNamespace guifg=Grey
-highlight CocSemParameter guifg=Grey
-highlight CocSemProperty guifg=LightGrey
-highlight link CocSemClass CocSemType
-highlight link CocSemTypeParameter CocSemType
-highlight link CocSemEnum CocSemType
-highlight link CocSemConcept CocSemType
-highlight link CocSemMacro Macro
-highlight link CocSemEnumMember Number
+highlight @lsp.type.namespace guifg=Grey
+highlight @lsp.type.parameter guifg=Grey
+highlight @lsp.type.property guifg=LightGrey
+highlight link @lsp.type.class Type
+highlight link @lsp.type.struct Type
+highlight link @lsp.type.enum Type
+highlight link @lsp.type.concept Type
+highlight link @lsp.type.enumMember Number
+highlight link @lsp.type.typeParameter Type
 
-highlight! link Keyword Structure
 highlight! link Statement Keyword
 highlight! link Conditional Keyword
 highlight! link Repeat Keyword
@@ -52,6 +62,7 @@ set relativenumber
 set tabstop=4
 set shiftwidth=4
 set noshowmode
+set signcolumn=yes
 
 set listchars=tab:→\ ,space:·,trail:·,extends:>,precedes:<
 set list
@@ -74,8 +85,3 @@ augroup END
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 set laststatus=2
-
-" check highlight group under cursor
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
